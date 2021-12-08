@@ -4,7 +4,7 @@ from math import sqrt
 from math import exp
 import cv2
 
-caffe_root = '/zhangqian/caffe-master/'
+caffe_root = '/caffe/caffe-master/'
 sys.path.insert(0, caffe_root + 'python')
 import caffe
 
@@ -62,7 +62,7 @@ def priorBox():
             for j in range(f):
                 # f_k = image_size / steps[k]
                 f_k = feature_maps[k]
-                
+
                 cx = (j + offset) / f_k
                 cy = (i + offset) / f_k
 
@@ -84,23 +84,16 @@ def priorBox():
                         continue
 
                     ar = aspect_ratios[k][ll]
-                    
+
                     priorbox_mean.append(cx)
                     priorbox_mean.append(cy)
                     priorbox_mean.append(s_k * sqrt(ar))
                     priorbox_mean.append(s_k / sqrt(ar))
-                    
+
                     priorbox_mean.append(cx)
                     priorbox_mean.append(cy)
                     priorbox_mean.append(s_k / sqrt(ar))
                     priorbox_mean.append(s_k * sqrt(ar))
-                    
-                    
-def preprocess(src):
-    img = cv2.resize(src, (image_size, image_size))
-    img = img - 127.5
-    img = img * 0.007843
-    return img
 
 
 def IOU(xmin1, ymin1, xmax1, ymax1, xmin2, ymin2, xmax2, ymax2):
@@ -183,16 +176,16 @@ def postprocess(out, img_h, img_w):
                         num_priors = 3
                     else:
                         num_priors = 6
-                        
+
                     for pri in range(num_priors):
                         priorbox_index += 4
 
                         conf_temp = []
                         softmaxSum = 0
-                        softmaxMax = 0
-                        
+
                         for cl in range(class_num):
-                            conf_t = conf[w * feature_maps[head] * num_priors * class_num + h * num_priors * class_num + pri * class_num + cl]                           
+                            conf_t = conf[w * feature_maps[
+                                head] * num_priors * class_num + h * num_priors * class_num + pri * class_num + cl]
                             conf_t_exp = exp(conf_t)
                             softmaxSum += conf_t_exp
                             conf_temp.append(conf_t_exp)
@@ -204,10 +197,12 @@ def postprocess(out, img_h, img_w):
 
                         for clss in range(1, class_num, 1):
                             conf_temp[clss] /= softmaxSum
-                       
+
                             if conf_temp[clss] > objThre:
-                                bx = priorbox_mean[priorbox_index + 0] + (loc_temp[0] * variances[0] * priorbox_mean[priorbox_index + 2])
-                                by = priorbox_mean[priorbox_index + 1] + (loc_temp[1] * variances[0] * priorbox_mean[priorbox_index + 3])
+                                bx = priorbox_mean[priorbox_index + 0] + (
+                                        loc_temp[0] * variances[0] * priorbox_mean[priorbox_index + 2])
+                                by = priorbox_mean[priorbox_index + 1] + (
+                                        loc_temp[1] * variances[0] * priorbox_mean[priorbox_index + 3])
                                 bw = priorbox_mean[priorbox_index + 2] * exp(loc_temp[2] * variances[1])
                                 bh = priorbox_mean[priorbox_index + 3] * exp(loc_temp[3] * variances[1])
 
@@ -224,6 +219,13 @@ def postprocess(out, img_h, img_w):
     print('detectResult:', len(detectResult))
     predBox = NMS(detectResult)
     return predBox
+
+
+def preprocess(src):
+    img = cv2.resize(src, (image_size, image_size))
+    img = img - 127.5
+    img = img * 0.007843
+    return img
 
 
 def detect(imgfile):
@@ -263,4 +265,3 @@ if __name__ == '__main__':
     priorBox()
     print('priorbox:', len(priorbox_mean))
     detect('./test.jpg')
-
