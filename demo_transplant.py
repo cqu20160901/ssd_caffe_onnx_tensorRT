@@ -184,8 +184,7 @@ def postprocess(out, img_h, img_w):
                         softmaxSum = 0
 
                         for cl in range(class_num):
-                            conf_t = conf[w * feature_maps[
-                                head] * num_priors * class_num + h * num_priors * class_num + pri * class_num + cl]
+                            conf_t = conf[w * feature_maps[head] * num_priors * class_num + h * num_priors * class_num + pri * class_num + cl]
                             conf_t_exp = exp(conf_t)
                             softmaxSum += conf_t_exp
                             conf_temp.append(conf_t_exp)
@@ -199,10 +198,8 @@ def postprocess(out, img_h, img_w):
                             conf_temp[clss] /= softmaxSum
 
                             if conf_temp[clss] > objThre:
-                                bx = priorbox_mean[priorbox_index + 0] + (
-                                        loc_temp[0] * variances[0] * priorbox_mean[priorbox_index + 2])
-                                by = priorbox_mean[priorbox_index + 1] + (
-                                        loc_temp[1] * variances[0] * priorbox_mean[priorbox_index + 3])
+                                bx = priorbox_mean[priorbox_index + 0] + (loc_temp[0] * variances[0] * priorbox_mean[priorbox_index + 2])
+                                by = priorbox_mean[priorbox_index + 1] + (loc_temp[1] * variances[0] * priorbox_mean[priorbox_index + 3])
                                 bw = priorbox_mean[priorbox_index + 2] * exp(loc_temp[2] * variances[1])
                                 bh = priorbox_mean[priorbox_index + 3] * exp(loc_temp[3] * variances[1])
 
