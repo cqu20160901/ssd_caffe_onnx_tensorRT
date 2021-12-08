@@ -1,5 +1,6 @@
 # 主要是ssd检测模型后处理的重写，便于移植不涉及训练
 
+
 用python语言，以C语言的形式重写了SSD的后处理，便于移植不同平台
 
 
@@ -11,3 +12,6 @@
   
   deploy_transplant.prototxt 去掉了一些层的prototxt文件
   
+
+所需环境
+	caffe
