@@ -4,5 +4,9 @@
 
 
 文件夹结构说明：
-  caffe_ssd目录中是原始的ssd
+
+   caffe_ssd为原始的ssd_caffe对应prototxt、caffeModel和测试demo文件
+	 
+	 demo_transplant.py 重写了后处理文件
+	 deploy_transplant.prototxt 去掉了一些层的prototxt文件
   
