@@ -18,4 +18,4 @@ caffe
 
 # 测试结果
 移植后处理结果
-https://github.com/cqu20160901/ssd_caffe/blob/master/test_result.jpg
+(https://github.com/cqu20160901/ssd_caffe/blob/master/test_result.jpg)
