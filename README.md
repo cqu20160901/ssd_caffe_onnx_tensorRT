@@ -1,20 +1,11 @@
 # ssd检测模型后处理的重写，便于移植不涉及训练
-
-
 用python语言，以C语言的形式重写了SSD的后处理，便于移植不同平台。
 
-
 # 文件夹结构说明：
-
-  caffe_ssd为原始的ssd_caffe对应prototxt、caffeModel和测试demo文件
+ caffe_ssd_original    为原始的ssd_caffe对应prototxt、caffeModel、测试图像、测试结果、测试demo脚本
+ caffe_ssd_transplant  为去除维度变换层的prototxt、caffeModel、测试图像、测试结果、测试demo脚本
+ onnx_ssd_transplant   为onnx模型、测试图像、测试结果、测试demo脚本
   
-  demo_transplant.py 重写了后处理文件
-  
-  deploy_transplant.prototxt 去掉了一些层的prototxt文件
-  
-
-# 所需环境
-caffe
 
 # 测试结果
 移植后处理结果
