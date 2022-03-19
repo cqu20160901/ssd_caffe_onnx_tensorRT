@@ -239,7 +239,7 @@ def detect(imgfile):
         title = CLASSES[classId] + "%.2f" % score
         cv2.putText(origimg, title, ptext, cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 0, 255), 1, cv2.LINE_AA)
 
-    cv2.imwrite('./result11.jpg', origimg)
+    cv2.imwrite('./test_result.jpg', origimg)
     # cv2.imshow("test", origimg)
     # cv2.waitKey(0)
 
