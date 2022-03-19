@@ -3,7 +3,9 @@
 
 # 文件夹结构说明：
  caffe_ssd_original    为原始的ssd_caffe对应prototxt、caffeModel、测试图像、测试结果、测试demo脚本
+ 
  caffe_ssd_transplant  为去除维度变换层的prototxt、caffeModel、测试图像、测试结果、测试demo脚本
+ 
  onnx_ssd_transplant   为onnx模型、测试图像、测试结果、测试demo脚本
   
 
