@@ -9,7 +9,7 @@
  
  onnx_ssd_transplant：onnx模型、测试图像、测试结果、测试demo脚本
  
- tensorRT_ssd_transplant：TensorRT版本模型、测试图像、测试结果、tensorRT测试demo脚本
+ tensorRT_ssd_transplant：TensorRT版本模型、测试图像、测试结果、tensorRT测试demo脚本、onnx模型、onnx2tensorRT脚本
   
 
 # 测试结果
