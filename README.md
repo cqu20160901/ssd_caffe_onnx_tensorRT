@@ -10,4 +10,4 @@
 # 测试结果
 移植后处理结果
 
-![image](https://github.com/cqu20160901/ssd_caffe/blob/master/test_result.jpg)
+![image](https://github.com/cqu20160901/ssd_caffe_onnx/blob/master/caffe_ssd_transplant/test_result.jpg)
