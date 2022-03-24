@@ -258,9 +258,13 @@ def postprocess(out, img_h, img_w):
                                 xmax = (bx + bw / 2) * img_w
                                 ymax = (by + bh / 2) * img_h
 
-                                if xmin >= 0 and ymin >= 0 and xmax <= img_w and ymax <= img_h:
-                                    box = DetectBox(clss, conf_temp[clss], xmin, ymin, xmax, ymax)
-                                    detectResult.append(box)
+                                xmin = xmin if xmin > 0 else 0
+                                ymin = ymin if ymin > 0 else 0
+                                xmax = xmax if xmax < img_w else img_w
+                                ymax = ymax if ymax < img_h else img_h
+
+                                box = DetectBox(clss, conf_temp[clss], xmin, ymin, xmax, ymax)
+                                detectResult.append(box)
 
     # NMS 过程
     print('detectResult:', len(detectResult))
