@@ -106,8 +106,8 @@ def preprocess(src):
     img = img - 127.5
     img = img * 0.007843
     img = img.transpose(2, 0, 1)
-    img_input = img.copy()
-    return img_input
+    img = np.ascontiguousarray(img)
+    return img
 
 
 def priorBox():
